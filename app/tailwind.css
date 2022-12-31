@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h1 {
+        @apply text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-wide mb-8;
+    }
+}
