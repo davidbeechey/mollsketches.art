@@ -23,9 +23,13 @@ export interface FormValues {
 }
 
 const CommissionsForm = () => {
-    const onSubmit = async (values: FormValues) => {
-        console.log(values);
-        return axios.post("/api/commissions", values);
+    const onSubmit = async (values: FormValues, resetForm: () => void) => {
+        return axios
+            .post("/api/commissions", values)
+            .then(() => {
+                resetForm();
+            })
+            .catch((err) => console.log(err));
     };
 
     const initialValues: FormValues = {
@@ -51,7 +55,7 @@ const CommissionsForm = () => {
     return (
         <Formik<FormValues>
             initialValues={initialValues}
-            onSubmit={onSubmit}
+            onSubmit={(values, { resetForm }) => onSubmit(values, resetForm)}
             validationSchema={validationSchema}
         >
             {({ isSubmitting }) => (
