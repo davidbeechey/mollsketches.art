@@ -1,5 +1,15 @@
 import { socials } from "../../config/socials";
 
+const SocialButtons = () => (
+    <div className="flex py-4 w-min justify-center px-2">
+        {socials.map(({ name, link, icon }, index) => (
+            <SocialButton key={index} name={name} link={link} icon={icon} />
+        ))}
+    </div>
+);
+
+export default SocialButtons;
+
 const SocialButton = ({ name, link, icon }: { name: string; link: string; icon: JSX.Element }) => (
     <a
         href={link}
@@ -10,13 +20,3 @@ const SocialButton = ({ name, link, icon }: { name: string; link: string; icon: 
         {icon}
     </a>
 );
-
-const SocialButtons = () => (
-    <div className="flex py-4 w-min justify-center px-2">
-        {socials.map((link, index) => (
-            <SocialButton key={index} name={link.name} link={link.link} icon={link.icon} />
-        ))}
-    </div>
-);
-
-export default SocialButtons;

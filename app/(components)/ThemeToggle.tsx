@@ -1,16 +1,30 @@
 "use client";
 
 import { FaMoon, FaSun } from "react-icons/fa";
-import { ThemeContext } from "../../contexts/themeContext";
+import { useState, useEffect } from "react";
 
-const ThemeToggle = () => (
-    <ThemeContext.Consumer>
-        {({ theme, toggleTheme }) => (
-            <button onClick={toggleTheme}>
-                {theme ? <FaMoon size="1.5em" /> : <FaSun size="1.5em" />}
-            </button>
-        )}
-    </ThemeContext.Consumer>
-);
+const themes = {
+    light: false,
+    dark: true,
+};
+
+const ThemeToggle = () => {
+    const [theme, setTheme] = useState(themes.dark);
+
+    useEffect(() => {
+        console.log("here");
+        theme == themes.dark
+            ? document.body.classList.add("dark")
+            : document.body.classList.remove("dark");
+    }, [theme]);
+
+    const toggleTheme = () => setTheme(!theme);
+
+    return (
+        <button onClick={toggleTheme}>
+            {theme === themes.dark ? <FaMoon size="1.5em" /> : <FaSun size="1.5em" />}
+        </button>
+    );
+};
 
 export default ThemeToggle;

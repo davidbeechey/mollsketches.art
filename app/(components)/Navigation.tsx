@@ -12,7 +12,7 @@ const Navigation = () => (
                 <div className="flex items-center w-full justify-between">
                     <Logo />
                     <div className="hidden lg:flex justify-end items-center">
-                        <div className="ml-10 flex items-center space-x-4 justify-end align-middle">
+                        <div className="ml-10 flex items-center gap-8 justify-end align-middle">
                             {links.map(({ name, link }, index) => (
                                 <NavLink key={index} name={name} link={link} />
                             ))}

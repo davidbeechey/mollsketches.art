@@ -29,7 +29,7 @@ const MobileNav = () => {
 
             {/* Mobile Nav Menu */}
             <Transition
-                className="absolute w-full top-32 left-0"
+                className="absolute w-full top-32 left-0 z-50"
                 show={isOpen}
                 enter="transition ease-out duration-100 transform"
                 enterFrom="opacity-0 scale-95"
