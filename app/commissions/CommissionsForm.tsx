@@ -14,11 +14,7 @@ type sizes = typeof SIZES[number];
 const QUALITIES = ["Sketch", "Colour", "Render"] as const;
 type qualities = typeof QUALITIES[number];
 
-// Form URL
-const GOOGLE_FORM_URL =
-    "https://docs.google.com/forms/d/e/1FAIpQLSe1GAq61Kdluh5r1oD0uZ1uD9mYdjMyOCrDlDInxQVUEzCzfQ/formResponse";
-
-interface FormValues {
+export interface FormValues {
     name: string;
     email: string;
     message: string;
@@ -29,22 +25,7 @@ interface FormValues {
 const CommissionsForm = () => {
     const onSubmit = async (values: FormValues) => {
         console.log(values);
-
-        return axios.post(
-            GOOGLE_FORM_URL,
-            {
-                "entry.378494427": values.name,
-                "entry.1818321937": values.email,
-                "entry.1707772383": values.size,
-                "entry.1381603031": values.quality,
-                "entry.1504533932": values.message,
-            },
-            {
-                headers: {
-                    "Access-Control-Allow-Origin": true,
-                },
-            }
-        );
+        return axios.post("/api/commissions", values);
     };
 
     const initialValues: FormValues = {
