@@ -13,7 +13,6 @@ const sendEmailConfirmation = (data: FormValues) => {
         user: process.env.EMAIL_USER,
         password: process.env.EMAIL_PASSWORD,
         host: process.env.EMAIL_HOST,
-        ssl: false,
         tls: true,
         port: 587,
     });
@@ -43,7 +42,6 @@ const sendNotificationEmail = (data: FormValues) => {
         user: process.env.EMAIL_USER,
         password: process.env.EMAIL_PASSWORD,
         host: process.env.EMAIL_HOST,
-        ssl: false,
         tls: true,
         port: 587,
     });
