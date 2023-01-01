@@ -13,8 +13,8 @@ const sendEmailConfirmation = (data: FormValues) => {
         user: process.env.EMAIL_USER,
         password: process.env.EMAIL_PASSWORD,
         host: process.env.EMAIL_HOST,
-        tls: true,
-        port: 587,
+        ssl: true,
+        tls: false,
     });
 
     client.send(
@@ -42,8 +42,8 @@ const sendNotificationEmail = (data: FormValues) => {
         user: process.env.EMAIL_USER,
         password: process.env.EMAIL_PASSWORD,
         host: process.env.EMAIL_HOST,
-        tls: true,
-        port: 587,
+        ssl: true,
+        tls: false,
     });
 
     client.send(
