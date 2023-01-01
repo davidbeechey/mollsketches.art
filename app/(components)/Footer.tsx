@@ -3,7 +3,7 @@ import Logo from "./Logo";
 import SocialButtons from "./SocialButtons";
 
 const Footer = () => (
-    <footer className="flex flex-col mx-4 my-10 items-center gap-4 md:gap-6">
+    <footer className="flex flex-col py-10 items-center gap-4 md:gap-6">
         <Logo />
         <SocialButtons />
         <div className="text-md text-gray-600 dark:text-gray-300 text-center flex flex-col sm:flex-row sm:gap-4">

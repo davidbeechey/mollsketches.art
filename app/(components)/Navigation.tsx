@@ -5,7 +5,7 @@ import ThemeToggle from "./ThemeToggle";
 import NavLink from "./NavLink";
 
 const Navigation = () => (
-    <nav className="my-8 px-4 md:px-12 lg:px-16 xl:px-32">
+    <nav className="py-8">
         <div className="px-2 align-middle items-center">
             <div className="flex items-center align-middle justify-between h-24 w-full">
                 {/* Desktop Navigation */}

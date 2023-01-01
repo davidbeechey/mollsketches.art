@@ -12,9 +12,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
     <html lang="en" className={montserrat.variable}>
         <head />
         <body>
-            <div className="px-2 flex flex-col justify-between min-h-screen transition duration-300 bg-gray-100 dark:bg-black text-gray-800 dark:text-white">
+            <div className="px-4 md:px-12 lg:px-16 xl:px-32 flex flex-col justify-between min-h-screen transition duration-300 bg-gray-100 dark:bg-black text-gray-800 dark:text-white">
                 <Navigation />
-                <main id="content" className="max-w-[110em] mx-auto">
+                <main id="content" className="py-8 max-w-[110em] mx-auto">
                     {children}
                 </main>
                 <Footer />

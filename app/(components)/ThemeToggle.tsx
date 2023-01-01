@@ -12,7 +12,6 @@ const ThemeToggle = () => {
     const [theme, setTheme] = useState(themes.dark);
 
     useEffect(() => {
-        console.log("here");
         theme == themes.dark
             ? document.body.classList.add("dark")
             : document.body.classList.remove("dark");

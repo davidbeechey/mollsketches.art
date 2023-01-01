@@ -28,7 +28,7 @@ const InputWrapper = ({
     // Add error styling to input if there is an error.
     const input = cloneElement(children, {
         className: `${DEFAULT_STYLES} ${children.props.className} ${
-            SHOW_ERROR ? "border-red-500" : "border-gray-300"
+            SHOW_ERROR ? "border-red-500" : "border-gray-300 dark:border-gray-700"
         }`,
         required: false, // stop HTML required action.
     });
