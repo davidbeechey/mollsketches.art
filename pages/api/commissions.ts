@@ -2,6 +2,17 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { SMTPClient } from "emailjs";
 import { FormValues } from "../../app/commissions/CommissionsForm";
 
+const createClient = () =>
+    new SMTPClient({
+        user: process.env.EMAIL_USER,
+        password: process.env.EMAIL_PASSWORD,
+        host: process.env.EMAIL_HOST,
+        tls: true,
+        port: 587,
+        timeout: 10000,
+        domain: "mollsketches.art",
+    });
+
 /**
  * Sends an email confirmation to the user who submitted the form.
  * @param data The data from the form submission.
@@ -9,13 +20,9 @@ import { FormValues } from "../../app/commissions/CommissionsForm";
 const sendEmailConfirmation = (data: FormValues) => {
     const { name, email, size, quality, message } = data;
 
-    const client = new SMTPClient({
-        user: process.env.EMAIL_USER,
-        password: process.env.EMAIL_PASSWORD,
-        host: process.env.EMAIL_HOST,
-        ssl: true,
-        tls: false,
-    });
+    const client = createClient();
+
+    console.log(client)
 
     client.send(
         {
@@ -25,8 +32,8 @@ const sendEmailConfirmation = (data: FormValues) => {
             subject: "Thank you for your commission submission!",
             attachment: [{ data: createEmailConfirmationBody(data), alternative: true }],
         },
-        (something) => {
-            console.log(something);
+        (err, message) => {
+            console.log(err || message);
         }
     );
 };
@@ -38,13 +45,7 @@ const sendEmailConfirmation = (data: FormValues) => {
 const sendNotificationEmail = (data: FormValues) => {
     const { name, email, size, quality, message } = data;
 
-    const client = new SMTPClient({
-        user: process.env.EMAIL_USER,
-        password: process.env.EMAIL_PASSWORD,
-        host: process.env.EMAIL_HOST,
-        ssl: true,
-        tls: false,
-    });
+    const client = createClient();
 
     client.send(
         {
@@ -54,8 +55,8 @@ const sendNotificationEmail = (data: FormValues) => {
             subject: "New commissions form submission!",
             attachment: [{ data: createNotificationEmailBody(data), alternative: true }],
         },
-        (something) => {
-            console.log(something);
+        (err, message) => {
+            console.log(err || message);
         }
     );
 };
