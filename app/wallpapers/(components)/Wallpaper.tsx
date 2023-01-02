@@ -12,7 +12,7 @@ const Wallpaper = ({ src, alt }: { src: string; alt: string }) => (
                     (min-width: 1024px) 15vw,
                     (min-width: 768px) 25vw,
                     35vw"
-                className="object-contain rounded-lg hover:scale-[102%] transition-all duration-300 ease-in-out max-h-max"
+                className="object-contain rounded-lg hover:scale-[102%] transition-all duration-300 ease-in-out max-h-max shadow-lg dark:shadow-gray-900"
                 quality={50}
             />
         </a>

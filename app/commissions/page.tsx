@@ -10,7 +10,7 @@ const Commissions = () => (
             <Image
                 src={commissionImg}
                 alt="Commissions options"
-                className="rounded-3xl"
+                className="rounded-3xl shadow-lg dark:shadow-gray-900"
                 priority
                 sizes="
                     (min-width: 1024px) 75vw,
