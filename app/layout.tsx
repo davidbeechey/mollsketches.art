@@ -13,9 +13,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
         <body>
             <div className="px-4 md:px-12 xl:px-32 flex flex-col justify-between min-h-screen transition duration-300 bg-gray-100 dark:bg-black text-gray-800 dark:text-white">
                 <Navigation />
-                <main id="content" className="py-8 flex-grow">
-                    {children}
-                </main>
+                <main className="py-8 flex-grow">{children}</main>
                 <Footer />
             </div>
         </body>

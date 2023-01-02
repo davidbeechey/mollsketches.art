@@ -97,16 +97,21 @@ const CommissionsForm = () => {
                         placeholder="Your message..."
                         required
                     />
-                    <button type="submit" className="bg-primary text-white px-4 py-3 rounded-full">
-                        {isSubmitting ? (
-                            <div className="flex gap-2 items-center">
-                                <Spinner />
-                                Submitting...
-                            </div>
-                        ) : (
-                            "Submit"
-                        )}
-                    </button>
+                    <div className="w-full flex justify-center">
+                        <button
+                            type="submit"
+                            className="bg-primary text-white px-4 py-3 rounded-full w-1/2 "
+                        >
+                            {isSubmitting ? (
+                                <div className="flex gap-2 items-center">
+                                    <Spinner />
+                                    Submitting...
+                                </div>
+                            ) : (
+                                "Submit"
+                            )}
+                        </button>
+                    </div>
                 </Form>
             )}
         </Formik>

@@ -28,7 +28,7 @@ const MobileNav = () => {
 
             {/* Mobile Nav Menu */}
             <Transition
-                className="absolute w-full top-32 left-0 z-50"
+                className="absolute w-full top-32 right-0 z-50"
                 show={isOpen}
                 enter="transition ease-out duration-100 transform"
                 enterFrom="opacity-0 scale-95"
@@ -40,7 +40,7 @@ const MobileNav = () => {
                 {(ref) => (
                     <div
                         ref={ref}
-                        className="lg:hidden flex flex-col gap-4 p-4 bg-white dark:bg-gray-800 shadow m-4 rounded-lg"
+                        className="lg:hidden flex flex-col gap-4 p-6 bg-white dark:bg-gray-800 shadow-2xl dark:shadow-gray-900 mx-8 rounded-lg"
                     >
                         {links.map(({ name, link }, index) => (
                             <MobileNavLink key={index} name={name} link={link} />
