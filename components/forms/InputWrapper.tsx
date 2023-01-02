@@ -1,8 +1,13 @@
 import { FieldMetaProps } from "formik";
 import { cloneElement, ReactElement } from "react";
-import { FieldProps } from "./types";
 import FormError from "./FormError";
 import Label from "./Label";
+
+export interface FieldProps {
+    id?: string;
+    name: string;
+    label?: string;
+}
 
 interface InputWrapperProps extends FieldProps {
     placeholder?: string;

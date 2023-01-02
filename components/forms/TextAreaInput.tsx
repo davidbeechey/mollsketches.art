@@ -1,6 +1,5 @@
 import { useField } from "formik";
-import { FieldProps } from "./types";
-import InputWrapper from "./InputWrapper";
+import InputWrapper, { FieldProps } from "./InputWrapper";
 
 interface TextAreaInputProps extends FieldProps {
     placeholder?: string;

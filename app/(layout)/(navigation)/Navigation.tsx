@@ -1,11 +1,11 @@
-import Logo from "./Logo";
-import { links } from "../../config/links";
+import Logo from "../Logo";
+import { links } from "./links";
 import MobileNav from "./MobileNav";
 import ThemeToggle from "./ThemeToggle";
 import NavLink from "./NavLink";
 
 const Navigation = () => (
-    <nav className="py-8">
+    <nav className="py-4 md:py-8">
         <div className="px-2 align-middle items-center">
             <div className="flex items-center align-middle justify-between h-24 w-full">
                 {/* Desktop Navigation */}

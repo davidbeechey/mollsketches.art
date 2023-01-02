@@ -1,4 +1,4 @@
-import Card from "../../components/Card";
+import Card from "components/Card";
 
 const About = () => (
     <div className="flex flex-col justify-center items-center animate-in fade-in-50 slide-in-from-bottom-10 duration-500">

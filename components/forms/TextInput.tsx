@@ -1,7 +1,6 @@
 import { useField } from "formik";
 import { HTMLInputTypeAttribute } from "react";
-import { FieldProps } from "./types";
-import InputWrapper from "./InputWrapper";
+import InputWrapper, { FieldProps } from "./InputWrapper";
 
 interface TextInputProps extends FieldProps {
     placeholder?: string;

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { FormValues } from "app/commissions/(components)/CommissionsForm";
 import { SMTPClient, Message } from "emailjs";
-import { FormValues } from "../../app/commissions/CommissionsForm";
 
 /**
  * Sends an email using the emailjs library.
@@ -14,7 +14,7 @@ const sendEmail = async (message: Message) => {
         tls: true,
         port: 587,
         timeout: 10000,
-        domain: "mollsketches.art",
+        domain: process.env.EMAIL_DOMAIN,
     });
 
     await new Promise((resolve, reject) =>
@@ -88,8 +88,7 @@ export default handler;
 const DATE_SUBMITTED = new Date().toLocaleString();
 
 // Profile picture URL for the email
-const PROFILE_PIC =
-    "https://www.mollsketches.art/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile.efadb944.png&w=96&q=100";
+const PROFILE_PIC = process.env.EMAIL_PROFILE_PIC;
 
 /**
  * Creates the HTML body for the email confirmation.

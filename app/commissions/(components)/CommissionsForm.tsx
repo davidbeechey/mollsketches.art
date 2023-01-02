@@ -1,11 +1,11 @@
 "use client";
 
 import { Form, Formik } from "formik";
-import SelectInput from "../../components/forms/SelectInput";
-import TextAreaInput from "../../components/forms/TextAreaInput";
-import TextInput from "../../components/forms/TextInput";
+import SelectInput from "components/forms/SelectInput";
+import TextAreaInput from "components/forms/TextAreaInput";
+import TextInput from "components/forms/TextInput";
+import Spinner from "components/Spinner";
 import * as Yup from "yup";
-import Spinner from "../../components/Spinner";
 import axios from "axios";
 
 const SIZES = ["Bust", "Bust and Torso", "Full Body"] as const;

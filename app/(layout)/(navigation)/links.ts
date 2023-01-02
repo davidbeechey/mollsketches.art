@@ -1,7 +1,4 @@
-export const links: {
-    name: string;
-    link: string;
-}[] = [
+export const links = [
     { name: "Home", link: "/" },
     { name: "About", link: "/about" },
     { name: "Portfolio", link: "/portfolio" },

@@ -1,4 +1,4 @@
-import Card from "../../components/Card";
+import Card from "components/Card";
 import KoFi from "./(buttons)/KoFi";
 
 const Donate = () => (
