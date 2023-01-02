@@ -2,6 +2,7 @@ import Footer from "./(layout)/(footer)/Footer";
 import Navigation from "./(layout)/(navigation)/Navigation";
 import "./global.css";
 import { Montserrat } from "@next/font/google";
+import AnalyticsWrapper from "./(layout)/AnalyticsWrapper";
 
 const montserrat = Montserrat({
     variable: "--font-montserrat",
@@ -16,6 +17,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
                 <main className="py-8 flex-grow">{children}</main>
                 <Footer />
             </div>
+            <AnalyticsWrapper />
         </body>
     </html>
 );
