@@ -102,7 +102,7 @@ const CommissionsForm = () => {
                             type="submit"
                             className="bg-primary text-white px-4 py-3 rounded-full w-1/2 "
                         >
-                            {isSubmitting || true ? (
+                            {isSubmitting ? (
                                 <div className="flex gap-2 items-center justify-center">
                                     <Spinner />
                                     Submitting...
