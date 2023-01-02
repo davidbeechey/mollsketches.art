@@ -1,9 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { SMTPClient } from "emailjs";
+import { SMTPClient, Message } from "emailjs";
 import { FormValues } from "../../app/commissions/CommissionsForm";
 
-const createClient = () =>
-    new SMTPClient({
+/**
+ * Sends an email using the emailjs library.
+ * @param message The email message to send.
+ */
+const sendEmail = async (message: Message) => {
+    const client = new SMTPClient({
         user: process.env.EMAIL_USER,
         password: process.env.EMAIL_PASSWORD,
         host: process.env.EMAIL_HOST,
@@ -13,52 +17,53 @@ const createClient = () =>
         domain: "mollsketches.art",
     });
 
+    await new Promise((resolve, reject) =>
+        client.send(message, (err, info) => {
+            if (err) {
+                console.error(err);
+                reject(err);
+            } else {
+                console.log(info);
+                resolve(info);
+            }
+        })
+    );
+};
+
 /**
  * Sends an email confirmation to the user who submitted the form.
  * @param data The data from the form submission.
  */
-const sendEmailConfirmation = (data: FormValues) => {
+const sendEmailConfirmation = async (data: FormValues) => {
     const { name, email, size, quality, message } = data;
 
-    const client = createClient();
+    const emailMessage = new Message({
+        text: `Name: ${name} \nEmail: ${email} \nSize: ${size} \nQuality: ${quality} \nMessage: ${message}`,
+        from: process.env.EMAIL_FROM as string,
+        to: email,
+        subject: "Thank you for your commission submission!",
+        attachment: [{ data: createEmailConfirmationBody(data), alternative: true }],
+    });
 
-    console.log(client)
-
-    client.send(
-        {
-            text: `Name: ${name} \nEmail: ${email} \nSize: ${size} \nQuality: ${quality} \nMessage: ${message}`,
-            from: process.env.EMAIL_FROM as string,
-            to: email,
-            subject: "Thank you for your commission submission!",
-            attachment: [{ data: createEmailConfirmationBody(data), alternative: true }],
-        },
-        (err, message) => {
-            console.log(err || message);
-        }
-    );
+    await sendEmail(emailMessage);
 };
 
 /**
  * Sends an email notification to Mollsketches.
  * @param data The data from the form submission.
  */
-const sendNotificationEmail = (data: FormValues) => {
+const sendNotificationEmail = async (data: FormValues) => {
     const { name, email, size, quality, message } = data;
 
-    const client = createClient();
+    const emailMessage = new Message({
+        text: `Name: ${name} \nEmail: ${email} \nSize: ${size} \nQuality: ${quality} \nMessage: ${message}`,
+        from: process.env.EMAIL_FROM as string,
+        to: process.env.EMAIL_TO as string,
+        subject: "New commissions form submission!",
+        attachment: [{ data: createNotificationEmailBody(data), alternative: true }],
+    });
 
-    client.send(
-        {
-            text: `Name: ${name} \nEmail: ${email} \nSize: ${size} \nQuality: ${quality} \nMessage: ${message}`,
-            from: process.env.EMAIL_FROM as string,
-            to: process.env.EMAIL_TO as string,
-            subject: "New commissions form submission!",
-            attachment: [{ data: createNotificationEmailBody(data), alternative: true }],
-        },
-        (err, message) => {
-            console.log(err || message);
-        }
-    );
+    await sendEmail(emailMessage);
 };
 
 /**
@@ -66,11 +71,11 @@ const sendNotificationEmail = (data: FormValues) => {
  * @param req NextApiRequest
  * @param res NextApiResponse
  */
-const handler = (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const data = req.body as FormValues;
 
-    sendEmailConfirmation(data);
-    sendNotificationEmail(data);
+    await sendEmailConfirmation(data);
+    await sendNotificationEmail(data);
 
     res.status(200).send({
         message: "Email sent",
