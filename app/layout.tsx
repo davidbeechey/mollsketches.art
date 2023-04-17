@@ -6,6 +6,7 @@ import AnalyticsWrapper from "./(layout)/AnalyticsWrapper";
 
 const montserrat = Montserrat({
     variable: "--font-montserrat",
+    subsets: ["latin"],
 });
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
