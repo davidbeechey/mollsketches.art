@@ -8,13 +8,13 @@ export const metadata = {
     viewport: "width=device-width, initial-scale=1",
 };
 
-const Wallpapers = () => {
+const Wallpapers = async () => {
     const images = fs
         .readdirSync("public/images/wallpapers")
         .map((image) => `/images/wallpapers/${image}`);
 
     return (
-        <div className="animate-in fade-in-50 slide-in-from-bottom-10 duration-500 space-y-8">
+        <div className="space-y-8">
             <h1>Wallpapers</h1>
             <Card styles="max-w-max mx-auto">
                 <p>Click on a wallpaper to download!</p>

@@ -55,9 +55,7 @@ const CommissionsForm = () => {
 
     const onSubmit: SubmitHandler<CommissionsSchema> = async (data) => {
         const id = toast.loading("Submitting...");
-
         const result = await submitForm(data);
-
         if (result.sent) {
             toast.success("Submitted successfully!", {
                 id,

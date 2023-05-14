@@ -6,7 +6,6 @@ import { CommissionsSchema } from "./CommissionsForm";
 export async function submitForm(data: CommissionsSchema) {
     if (process.env.SEND_EMAILS !== "true") {
         console.log("Emails are not being sent. Check the SEND_EMAILS environment variable.");
-        // Sleep
         await new Promise((resolve) => setTimeout(resolve, 1000));
         return {
             sent: true,
