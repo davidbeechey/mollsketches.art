@@ -7,7 +7,13 @@ import kofi from "public/images/donate/kofi.webp";
 const KOFI_LINK = "https://ko-fi.com/mollsketches";
 
 const KoFi = () => (
-    <Link href={KOFI_LINK} className="group" target="_blank">
+    <Link
+        href={{
+            pathname: KOFI_LINK,
+        }}
+        className="group"
+        target="_blank"
+    >
         <Image
             src={kofi}
             alt="Ko-Fi logo"

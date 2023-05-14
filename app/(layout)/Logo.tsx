@@ -8,6 +8,8 @@ const Logo = () => (
             src={profilePic}
             alt="Mollsketches' profile picture, a drawing of them."
             className="w-16 md:w-20"
+            width={50}
+            height={50}
         />
         <p className="text-xl md:text-2xl tracking-wide text-gray-800 dark:text-gray-100">
             Mollsketches

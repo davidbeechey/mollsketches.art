@@ -1,8 +1,7 @@
 import Wallpaper from "./Wallpaper";
 import fs from "fs";
 
-const WallpapersGrid = async () => {
-    // Get all images from the public/images/wallpapers folder.
+const WallpapersGrid = () => {
     const images = fs
         .readdirSync("public/images/wallpapers")
         .map((image) => `/images/wallpapers/${image}`);

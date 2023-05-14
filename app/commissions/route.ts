@@ -1,6 +1,15 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { FormValues } from "app/commissions/(components)/CommissionsForm";
 import { SMTPClient, Message } from "emailjs";
+
+export async function POST(request: Request) {
+    const data = request.body;
+
+    await sendEmailConfirmation(data);
+    await sendNotificationEmail(data);
+
+    // res.status(200).send({
+    //     message: "Email sent",
+    // });
+}
 
 /**
  * Sends an email using the emailjs library.
@@ -34,7 +43,7 @@ const sendEmail = async (message: Message) => {
  * Sends an email confirmation to the user who submitted the form.
  * @param data The data from the form submission.
  */
-const sendEmailConfirmation = async (data: FormValues) => {
+const sendEmailConfirmation = async (data: any) => {
     const { name, email, size, quality, message } = data;
 
     const emailMessage = new Message({
@@ -52,7 +61,7 @@ const sendEmailConfirmation = async (data: FormValues) => {
  * Sends an email notification to Mollsketches.
  * @param data The data from the form submission.
  */
-const sendNotificationEmail = async (data: FormValues) => {
+const sendNotificationEmail = async (data: any) => {
     const { name, email, size, quality, message } = data;
 
     const emailMessage = new Message({
@@ -66,24 +75,6 @@ const sendNotificationEmail = async (data: FormValues) => {
     await sendEmail(emailMessage);
 };
 
-/**
- * Handles the POST request to the commissions API.
- * @param req NextApiRequest
- * @param res NextApiResponse
- */
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-    const data = req.body as FormValues;
-
-    await sendEmailConfirmation(data);
-    await sendNotificationEmail(data);
-
-    res.status(200).send({
-        message: "Email sent",
-    });
-};
-
-export default handler;
-
 // Get the date and time of submission
 const DATE_SUBMITTED = new Date().toLocaleString();
 
@@ -95,7 +86,7 @@ const PROFILE_PIC = process.env.EMAIL_PROFILE_PIC;
  * @param data The data from the form submission.
  * @returns The HTML body for the email confirmation.
  */
-const createEmailConfirmationBody = ({ name, email, size, quality, message }: FormValues) =>
+const createEmailConfirmationBody = ({ name, email, size, quality, message }: any) =>
     `
         <img height="96px" width="96px" src="${PROFILE_PIC}"></img><h1>Mollsketches</h1>
         <p>Hello there!<br><br>Thank you for filling out the commissions form with the details below:</p><ul>
@@ -113,7 +104,7 @@ const createEmailConfirmationBody = ({ name, email, size, quality, message }: Fo
  * @param data The data from the form submission.
  * @returns The HTML body for the email notification.
  */
-const createNotificationEmailBody = ({ name, email, size, quality, message }: FormValues) => `
+const createNotificationEmailBody = ({ name, email, size, quality, message }: any) => `
         <img height="96px" width="96px" src="${PROFILE_PIC}"></img><h1>Mollsketches</h1>
         <p>Hey, Mollsketches!<br><br>Someone has filled out the commissions form:</p><ul>
         <li><b>Date submitted:</b> ${DATE_SUBMITTED}</li>

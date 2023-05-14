@@ -1,4 +1,10 @@
-import Card from "components/Card";
+import { Card } from "components";
+
+export const metadata = {
+    title: "About - Mollsketches",
+    description: "Mollie aka Mollsketches is an 18 year old amateur illustrator and artist...",
+    viewport: "width=device-width, initial-scale=1",
+};
 
 const About = () => (
     <div className="main-content flex flex-col justify-center items-center animate-in fade-in-50 slide-in-from-bottom-10 duration-500">

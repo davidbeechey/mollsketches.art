@@ -8,7 +8,9 @@ const NavLink = ({ name, link }: { name: string; link: string }) => {
 
     return (
         <Link
-            href={link}
+            href={{
+                pathname: link,
+            }}
             className={`text-lg ${
                 pathname === link
                     ? "text-primary dark:text-secondary text-m font-extrabold transition duration-300 ease-in-out"

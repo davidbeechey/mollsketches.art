@@ -32,7 +32,7 @@ const Footer = () => {
 export default Footer;
 
 const FooterLink = ({ name, link }: { name: string; link: string }) => (
-    <Link className="fancy-underline" href={link} target="_blank">
+    <Link className="fancy-underline" href={{ pathname: link }} target="_blank">
         {name}
     </Link>
 );
