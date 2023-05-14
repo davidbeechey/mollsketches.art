@@ -1,7 +1,7 @@
 import Footer from "./(layout)/(footer)/Footer";
 import Navigation from "./(layout)/(navigation)/Navigation";
 import "./global.css";
-import { Montserrat } from "@next/font/google";
+import { Montserrat } from "next/font/google";
 import AnalyticsWrapper from "./(layout)/AnalyticsWrapper";
 
 const montserrat = Montserrat({
