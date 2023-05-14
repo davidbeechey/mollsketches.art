@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Card } from "components";
 import commissionImg from "public/images/commissions.png";
-import CommissionsForm from "./(components)/CommissionsForm";
+import CommissionsForm from "./CommissionsForm";
 
 export const metadata = {
     title: "Commissions - Mollsketches",
