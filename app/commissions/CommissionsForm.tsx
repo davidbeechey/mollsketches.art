@@ -5,11 +5,13 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { cx } from "classix";
+import { submitForm } from "./submit";
+import toast from "react-hot-toast";
 
 const SIZES = ["Bust", "Bust and Torso", "Full Body"] as const;
 const QUALITIES = ["Sketch", "Colour", "Render"] as const;
 
-const validationSchema = z.object({
+const CommissionsSchema = z.object({
     name: z.string().nonempty({
         message: "Name is required",
     }),
@@ -32,7 +34,7 @@ const validationSchema = z.object({
     }),
 });
 
-type ValidationSchema = z.infer<typeof validationSchema>;
+export type CommissionsSchema = z.infer<typeof CommissionsSchema>;
 
 const CommissionsForm = () => {
     const {
@@ -40,8 +42,8 @@ const CommissionsForm = () => {
         handleSubmit,
         formState: { errors, isSubmitting },
         reset,
-    } = useForm<ValidationSchema>({
-        resolver: zodResolver(validationSchema),
+    } = useForm<CommissionsSchema>({
+        resolver: zodResolver(CommissionsSchema),
         defaultValues: {
             email: "",
             message: "",
@@ -51,16 +53,22 @@ const CommissionsForm = () => {
         },
     });
 
-    const onSubmit: SubmitHandler<ValidationSchema> = (data) =>
-        fetch("/api/commissions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        })
-            .then(() => reset())
-            .catch((err) => console.log(err));
+    const onSubmit: SubmitHandler<CommissionsSchema> = async (data) => {
+        const id = toast.loading("Submitting...");
+
+        const result = await submitForm(data);
+
+        if (result.sent) {
+            toast.success("Submitted successfully!", {
+                id,
+            });
+            reset();
+        } else {
+            toast.error("Something went wrong, please try again later", {
+                id,
+            });
+        }
+    };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

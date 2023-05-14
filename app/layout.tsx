@@ -3,6 +3,7 @@ import Navigation from "./(layout)/(navigation)/Navigation";
 import "./global.css";
 import { Montserrat } from "next/font/google";
 import AnalyticsWrapper from "./(layout)/AnalyticsWrapper";
+import { Toaster } from "react-hot-toast";
 
 const montserrat = Montserrat({
     variable: "--font-montserrat",
@@ -19,6 +20,14 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
                 <Footer />
             </div>
             <AnalyticsWrapper />
+            <Toaster
+                position="bottom-right"
+                toastOptions={{
+                    style: {
+                        padding: "1rem",
+                    },
+                }}
+            />
         </body>
     </html>
 );
